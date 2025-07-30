@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Year Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="converter-container">
+        <h1>Japanese Year Converter</h1>
+
+        <div class="input-group">
+            <label for="western-year">Western Year (e.g., 2023)</label>
+            <input type="number" id="western-year" placeholder="Enter Western Year">
+        </div>
+
+        <div class="input-group">
+            <label for="japanese-era">Japanese Year</label>
+            <div class="japanese-input-container">
+                <select id="japanese-era"></select>
+                <input type="number" id="japanese-era-year" placeholder="Year">
+            </div>
+        </div>
+
+        <p id="error-message"></p>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
