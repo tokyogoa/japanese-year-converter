@@ -1,6 +1,12 @@
 html {
+    box-sizing: border-box;
     /* 기본 폰트 크기를 설정하여 rem 단위의 기준을 만듭니다. */
     font-size: 16px;
+}
+
+*, *::before, *::after {
+    /* 모든 요소가 border-box 모델을 상속받도록 설정하여 레이아웃 안정성을 높입니다. */
+    box-sizing: inherit;
 }
 
 body {
@@ -17,7 +23,7 @@ body {
 
 .converter-container {
     background-color: #ffffff;
-    padding: 2.5rem;
+    padding: 1.5rem; /* 모바일 화면에 맞게 내부 여백을 줄입니다. */
     border-radius: 16px; /* 더 둥근 모서리 */
     box-shadow: 0 4px 6px rgba(0,0,0,0.04), 0 10px 30px rgba(0,0,0,0.08); /* 은은한 그림자 효과 */
     width: 100%;
@@ -101,5 +107,7 @@ footer {
     .converter-container {
         /* 데스크톱에서 변환기 최대 너비를 늘림 */
         max-width: 650px;
+        /* 데스크톱에서는 기존의 넓은 여백을 다시 적용합니다. */
+        padding: 2.5rem;
     }
 }
