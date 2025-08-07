@@ -6,10 +6,12 @@
     <meta name="naver-site-verification" content="4526011b1e02dcfcf4d5e922d0403070d6df0524" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="website"> 
-    <meta property="og:title" content="Japanese Year Converter">
-    <meta property="og:description" content="Instantly convert Western to Japanese years (Showa, Heisei, Reiwa) and back with our real-time Japanese year converter. Your ultimate tool for precise and effortless era conversion.">
+    <meta property="og:title" content="Japanese Year Converter | Wareki/Seireki Calculator">
+    <meta name="description" content="Easily convert between Western (AD) and Japanese era years (Wareki). Real-time calculator for Reiwa, Heisei, Showa. 和暦・西暦の年号変換、일본 연호 변환기, 日本年号换算.">
+    <meta name="keywords" content="japanese year converter, wareki, seireki, reiwa, heisei, showa, 和暦, 西暦, 年号, 変換, 計算, 令和, 平成, 昭和, 일본 연호 변환, 서기, 日本年号换算">
+    <meta property="og:description" content="Easily convert between Western (AD) and Japanese era years (Wareki). Real-time calculator for Reiwa, Heisei, Showa. 和暦・西暦の年号変換、일본 연호 변환기, 日本年号换算.">
     <meta property="og:url" content="http://www.wareki.org">
-    <title>Japanese Year Converter</title>
+    <title>Japanese Year Converter | Wareki/Seireki Calculator</title>
     <link rel="stylesheet" href="style.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -18,23 +20,31 @@
 </head>
 <body>
 
+    <div class="lang-switcher">
+        <button data-lang="en" class="active">EN</button>
+        <button data-lang="ja">JA</button>
+    </div>
+
     <div class="converter-container">
-        <h1>Japanese Year Converter</h1>
+        <h1>
+            <span data-i18n-key="pageTitleMain">Japanese Year Converter</span>
+            <small data-i18n-key="pageTitleSub">Wareki/Seireki Calculator</small>
+        </h1>
 
         <div class="input-group">
-            <label for="western-year">Western Year (e.g., 2023)</label>
-            <input type="number" id="western-year" placeholder="Enter Western Year">
+            <label for="western-year" data-i18n-key="westernYearLabel">Western Year (e.g., 2025)</label>
+            <input type="number" id="western-year" data-i18n-key-placeholder="westernYearPlaceholder" placeholder="Enter Western Year">
         </div>
 
         <div class="input-group">
-            <label for="japanese-era">Japanese Year</label>
+            <label for="japanese-era" data-i18n-key="japaneseYearLabel">Japanese Year</label>
             <div class="japanese-input-container">
                 <select id="japanese-era"></select>
-                <input type="number" id="japanese-era-year" placeholder="Year">
+                <input type="number" id="japanese-era-year" data-i18n-key-placeholder="japaneseYearPlaceholder" placeholder="Year">
             </div>
         </div>
 
-        <button id="clear-button">Clear</button>
+        <button id="clear-button" data-i18n-key="clearButton">Clear</button>
 
         <p id="error-message"></p>
     </div>
@@ -43,6 +53,8 @@
         <p>© 2025. azzaman All Rights Reserved.</p>
     </footer>
 
+    <script src="data.js"></script>
+    <script src="translations.js"></script>
     <script src="script.js"></script>
 
 </body>

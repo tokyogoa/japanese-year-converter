@@ -1,27 +1,67 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const eras = [
-        { name: "Reiwa", kanji: "令和", start: 2019 },
-        { name: "Heisei", kanji: "平成", start: 1989 },
-        { name: "Shōwa", kanji: "昭和", start: 1926 },
-        { name: "Taishō", kanji: "大正", start: 1912 },
-        { name: "Meiji", kanji: "明治", start: 1868 },
-    ];
-
+    // The 'eras' and 'translations' constants are now loaded from external files.
     const westernYearInput = document.getElementById('western-year');
     const japaneseEraSelect = document.getElementById('japanese-era');
     const japaneseEraYearInput = document.getElementById('japanese-era-year');
     const errorMessage = document.getElementById('error-message');
     const clearButton = document.getElementById('clear-button');
+    const langButtons = document.querySelectorAll('.lang-switcher button');
 
     // A flag to prevent chained event listeners from creating unwanted "corrections".
     let isUpdating = false;
+    // State for the current language
+    let currentLang = 'en';
+    // State for the current error message
+    let currentErrorState = null; // e.g., { key: 'errorKey', params: { ... } }
 
     function clearError() {
+        currentErrorState = null;
         errorMessage.textContent = '';
     }
 
-    function showError(message) {
+    function showError(key, params = {}) {
+        currentErrorState = { key, params };
+        let message = (translations[currentLang] && translations[currentLang][key]) || 'An unknown error occurred.';
+        for (const [param, value] of Object.entries(params)) {
+            message = message.replace(`{${param}}`, value);
+        }
         errorMessage.textContent = message;
+    }
+
+    function setLanguage(lang) {
+        if (!translations[lang]) return;
+        currentLang = lang;
+        localStorage.setItem('japaneseYearConverterLang', lang);
+        document.documentElement.lang = lang;
+
+        // Update UI text based on data-i18n-key attributes
+        document.querySelectorAll('[data-i18n-key]').forEach(el => {
+            const key = el.getAttribute('data-i18n-key');
+            if (translations[lang][key]) {
+                el.textContent = translations[lang][key];
+            }
+        });
+
+        // Update placeholders
+        document.querySelectorAll('[data-i18n-key-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-key-placeholder');
+            if (translations[lang][key]) {
+                el.placeholder = translations[lang][key];
+            }
+        });
+
+        // Update document title
+        document.title = translations[lang].pageTitle;
+
+        // Update lang switcher active state
+        langButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+
+        // Re-render the current error message in the new language, if it exists.
+        if (currentErrorState) {
+            showError(currentErrorState.key, currentErrorState.params);
+        }
     }
 
     function populateEraDropdown() {
@@ -50,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (isNaN(year)) {
                 japaneseEraYearInput.value = '';
-                showError("Please enter a valid Western year.");
+                showError("errorValidYear");
                 return;
             }
 
@@ -62,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Only show an error if the user has likely finished typing a full year (4 digits).
                 if (yearStr.length >= 4) {
-                    showError(`Year must be ${oldestEra.start} or later.`);
+                    showError("errorMinYear", { year: oldestEra.start });
                 }
                 return;
             }
@@ -97,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (isNaN(yearInEra) || yearInEra <= 0) {
                 westernYearInput.value = '';
-                showError("Please enter a positive year for the era.");
+                showError("errorPositiveYear");
                 return;
             }
 
@@ -107,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // This check is mostly for safety, as the dropdown should prevent this.
             if (!era) {
                 westernYearInput.value = '';
-                showError(`Era '${eraName}' not found.`);
+                showError("errorEraNotFound", { eraName: eraName });
                 return;
             }
 
@@ -118,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const maxYearInEra = nextEra.start - era.start;
                 if (yearInEra > maxYearInEra) {
                     westernYearInput.value = '';
-                    showError(`${era.name} era ended in year ${maxYearInEra}.`);
+                    showError("errorEraEnded", { eraName: era.name, maxYear: maxYearInEra });
                     return;
                 }
             }
@@ -141,6 +181,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Initialization ---
     populateEraDropdown();
+
+    // Add event listeners for lang switcher
+    langButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            setLanguage(button.dataset.lang);
+        });
+    });
+
+    // Set initial language based on saved preference or browser language
+    const savedLang = localStorage.getItem('japaneseYearConverterLang');
+    const browserLang = navigator.language.split('-')[0];
+    setLanguage(savedLang || (translations[browserLang] ? browserLang : 'en'));
 
     // --- Event Listeners ---
     // Automatically convert as the user types in either field.
