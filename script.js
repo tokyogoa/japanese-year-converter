@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const japaneseEraSelect = document.getElementById('japanese-era');
     const japaneseEraYearInput = document.getElementById('japanese-era-year');
     const errorMessage = document.getElementById('error-message');
+    const clearButton = document.getElementById('clear-button');
 
     // A flag to prevent chained event listeners from creating unwanted "corrections".
     let isUpdating = false;
@@ -36,11 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isUpdating) return;
         isUpdating = true;
         try {
-            clearError();
+            clearError(); // Start by clearing any previous errors.
             const yearStr = westernYearInput.value;
 
             if (!yearStr) {
                 japaneseEraYearInput.value = '';
+                // When input is cleared, we don't need to show an error.
                 return;
             }
 
@@ -48,8 +50,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (isNaN(year)) {
                 japaneseEraYearInput.value = '';
-                if (yearStr) showError("Please enter a valid Western year.");
-                showError(`Year must be ${eras[eras.length - 1].start} or later.`);
+                showError("Please enter a valid Western year.");
+                return;
+            }
+
+            const oldestEra = eras[eras.length - 1];
+            if (year < oldestEra.start) {
+                // For partial or invalid years, clear the result fields.
+                japaneseEraYearInput.value = '';
+                japaneseEraSelect.value = eras[0].name; // Reset dropdown to default
+
+                // Only show an error if the user has likely finished typing a full year (4 digits).
+                if (yearStr.length >= 4) {
+                    showError(`Year must be ${oldestEra.start} or later.`);
+                }
                 return;
             }
 
@@ -70,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isUpdating) return;
         isUpdating = true;
         try {
-            clearError();
+            clearError(); // Start by clearing any previous errors.
             const eraName = japaneseEraSelect.value;
             const yearInEraStr = japaneseEraYearInput.value;
 
@@ -83,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (isNaN(yearInEra) || yearInEra <= 0) {
                 westernYearInput.value = '';
-                if (yearInEraStr) showError("Please enter a positive year for the era.");
+                showError("Please enter a positive year for the era.");
                 return;
             }
 
@@ -116,6 +130,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function clearAll() {
+        isUpdating = true; // Prevent converters from firing
+        westernYearInput.value = '';
+        japaneseEraSelect.value = eras[0].name; // Reset to the most recent era
+        japaneseEraYearInput.value = '';
+        clearError();
+        isUpdating = false;
+    }
+
     // --- Initialization ---
     populateEraDropdown();
 
@@ -124,4 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
     westernYearInput.addEventListener('input', convertToJapanese);
     japaneseEraSelect.addEventListener('change', convertToWestern);
     japaneseEraYearInput.addEventListener('input', convertToWestern);
+    if (clearButton) {
+        clearButton.addEventListener('click', clearAll);
+    }
 });
