@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set initial language based on saved preference or browser language
     const savedLang = localStorage.getItem('japaneseYearConverterLang');
     const browserLang = navigator.language.split('-')[0];
-    setLanguage(savedLang || (translations[browserLang] ? browserLang : 'en'));
+    setLanguage(savedLang || (translations[browserLang] ? browserLang : 'ja'));
 
     // --- Event Listeners ---
     // Automatically convert as the user types in either field.
