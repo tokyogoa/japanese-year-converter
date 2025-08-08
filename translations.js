@@ -2,7 +2,7 @@
 const translations = {
   en: {
     // Page Title
-    pageTitle: "Japanese Year Converter | Wareki/Seireki Calculator",
+    pageTitle: "Japanese Era Converter & Chart (Reiwa, Heisei, Showa)",
     pageTitleMain: "Japanese Year Converter",
     pageTitleSub: "Wareki/Seireki Calculator",
     // Labels
@@ -22,7 +22,7 @@ const translations = {
   },
   ja: {
     // Page Title
-    pageTitle: "和暦・西暦変換 | 年号計算ツール",
+    pageTitle: "和暦・西暦の早見表と変換 | 令和・平成・昭和対応",
     pageTitleMain: "和暦・西暦変換",
     pageTitleSub: "年号計算ツール",
     // Labels
