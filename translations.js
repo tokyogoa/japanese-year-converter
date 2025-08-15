@@ -19,6 +19,10 @@ const translations = {
     errorPositiveYear: "Please enter a positive year for the era.",
     errorEraNotFound: "Era '{eraName}' not found.",
     errorEraEnded: "{eraName} era ended in year {maxYear}.",
+    // Footer Links
+    footerAbout: "About",
+    footerGuide: "User Guide",
+    footerPrivacy: "Privacy Policy",
   },
   ja: {
     // Page Title
@@ -39,5 +43,9 @@ const translations = {
     errorPositiveYear: "有効な年数を入力してください。",
     errorEraNotFound: "元号「{eraName}」が見つかりません。",
     errorEraEnded: "{eraName}は{maxYear}年で終わりました。",
+    // Footer Links
+    footerAbout: "About",
+    footerGuide: "利用ガイド",
+    footerPrivacy: "プライバシーポリシー",
   }
 };

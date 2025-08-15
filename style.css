@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* --- Color & Style Variables --- */
 :root {
     --color-background: #f8f9fa;
     --color-surface: #ffffff;
-    --color-text-primary: #212529;
+    --color-text-primary: #111827; /* Deeper, more modern black */
     --color-text-secondary: #6c757d;
     --color-accent-blue: #0077cc; /* London-inspired vibrant blue */
     --color-accent-blue-darker: #005fa3;
     --color-accent-yellow: #ffc72c; /* Impactful yellow accent */
+    --color-accent-red: #e53935; /* Classic red for highlights */
     --color-border: #dee2e6;
     --color-error: #d93025;
 }
@@ -23,7 +26,7 @@ html {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     display: flex;
     flex-direction: column; /* footer를 아래에 배치하기 위해 변경 */
     justify-content: center;
@@ -38,7 +41,7 @@ body {
     background-color: var(--color-surface);
     padding: 1.5rem; /* 모바일 화면에 맞게 내부 여백을 줄입니다. */
     border-radius: 16px; /* 더 둥근 모서리 */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.04), 0 10px 30px rgba(0,0,0,0.08); /* 은은한 그림자 효과 */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05), 0 10px 40px rgba(0,0,0,0.06); /* 더 부드러운 그림자 */
     width: 100%;
     max-width: 450px;
     text-align: center;
@@ -177,6 +180,104 @@ footer {
     font-size: 0.9rem;
 }
 
+.footer-nav {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1rem;
+}
+
+.footer-nav a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-nav a:hover {
+    color: var(--color-accent-blue);
+    text-decoration: underline;
+}
+
+/* --- Styles for Content Pages (About, Guide, Privacy) --- */
+body.content-page {
+    justify-content: flex-start; /* Align content to the top */
+}
+
+.content-container {
+    background-color: var(--color-surface);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.04); /* Even more subtle shadow */
+    width: 100%;
+    max-width: 720px; /* More compact width */
+    margin: 2rem 1rem;
+    text-align: left;
+    line-height: 1.65; /* Adjust for smaller font */
+}
+
+.content-container header {
+    margin-bottom: 1.5rem;
+}
+
+.content-container header a {
+    text-decoration: none;
+    color: var(--color-accent-blue);
+    font-weight: 600;
+}
+
+.content-container h1 {
+    font-size: 1.8rem; /* Smaller heading */
+    font-weight: 700;
+    border-bottom: none;
+    letter-spacing: -0.02em;
+}
+
+.content-container h2 {
+    font-size: 1.3rem; /* Smaller subheading */
+    font-weight: 500; /* Lighter weight for a softer feel */
+    margin-top: 2.5rem;
+    padding-bottom: 0;
+    border-bottom: none; /* Remove the underline */
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+}
+
+/* A subtle, colorful marker inspired by modern art */
+.content-container h2::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 0.8rem;
+    /* Use the primary colors from the homepage */
+    background-color: var(--color-accent-blue);
+}
+
+.content-container h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-primary);
+}
+
+.content-container p,
+.content-container li,
+.content-container ul,
+.content-container ol {
+    font-size: 0.9rem; /* Smaller body text */
+}
+
+.content-divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--color-border);
+    margin: 2.5rem 0;
+}
+
 /* 데스크톱 화면을 위한 미디어 쿼리 */
 @media (min-width: 768px) {
     .lang-switcher {
@@ -193,5 +294,9 @@ footer {
         max-width: 650px;
         /* 데스크톱에서는 기존의 넓은 여백을 다시 적용합니다. */
         padding: 2.5rem;
+    }
+    .content-container {
+        padding: 2.5rem 3rem;
+        margin: 2rem auto;
     }
 }
