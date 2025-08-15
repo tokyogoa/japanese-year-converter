@@ -25,6 +25,10 @@
     <meta property="og:description" content="令和、平成、昭和、大正、明治の和暦と西暦を瞬時に変換・計算できる便利なツール。シンプルで使いやすいインターフェース。">
     <meta property="og:url" content="https://www.wareki.com/">
 
+    <!-- Tate Mode Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=1.2">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -36,6 +40,7 @@
     <div class="lang-switcher">
         <button data-lang="en">EN</button>
         <button data-lang="ja" class="active">JA</button>
+        <button id="theme-switcher" title="Toggle Art Mode">🎨</button>
     </div>
 
     <div class="converter-container">
@@ -73,6 +78,7 @@
 
     <script src="data.js?v=1.2"></script>
     <script src="translations.js?v=1.2"></script>
+    <script src="theme.js?v=1.2"></script>
     <script src="script.js?v=1.2"></script>
 
 </body>

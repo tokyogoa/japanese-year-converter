@@ -37,6 +37,12 @@ body {
     color: var(--color-text-primary);
 }
 
+/* --- Universal Transition --- */
+body, .converter-container, input, select, button {
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+
 .converter-container {
     background-color: var(--color-surface);
     padding: 1.5rem; /* 모바일 화면에 맞게 내부 여백을 줄입니다. */
@@ -74,6 +80,13 @@ body {
 .lang-switcher button.active {
     background-color: var(--color-accent-blue);
     color: var(--color-surface);
+}
+
+.lang-switcher button#theme-switcher {
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0.25rem;
+    width: 28px; /* Consistent size */
 }
 
 h1 {
@@ -299,4 +312,180 @@ body.content-page {
         padding: 2.5rem 3rem;
         margin: 2rem auto;
     }
+}
+
+/*
+--- MARC CHAGALL THEME ---
+Inspired by the dreamlike, vibrant, and poetic colors of Marc Chagall.
+Luminous, emotional, and surreal.
+*/
+
+body.theme-chagall {
+    /* Chagall's iconic color palette */
+    --color-accent-blue: #0B2447;   /* Deep, celestial blue */
+    --color-accent-yellow: #FFC300; /* Luminous yellow */
+    --color-accent-red: #C70039;    /* Passionate red */
+    --color-accent-green: #1A5D1A;  /* Rich green */
+
+    /* Surfaces and Text */
+    --color-background: var(--color-accent-blue);
+    --color-surface: rgba(253, 246, 227, 0.95); /* Warm, glowing parchment (Solarized Light bg) */
+    --color-text-primary: #3a2d0b;
+    --color-text-secondary: #655533;
+    --color-border: #d3cbb8;
+    --color-error: #D93025;
+
+    font-family: 'Inter', sans-serif; /* A softer, more classic font */
+    /* A subtle glow from the center, like a dream */
+    background-image:
+        radial-gradient(circle at center, #19376D, #0B2447);
+}
+
+body.theme-chagall .converter-container,
+body.theme-chagall .content-container {
+    background-color: var(--color-surface);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-radius: 16px; /* Softer, more organic corners */
+    box-shadow: 0 0 30px rgba(255, 195, 0, 0.2), 0 4px 15px rgba(0,0,0,0.3); /* A soft, yellow glow */
+    border: 1px solid #d3cbb8;
+}
+
+body.theme-chagall h1 span {
+    border-bottom: none;
+    color: var(--color-accent-red); /* A passionate red title */
+    background: none; /* Override gradient from previous theme */
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: inherit;
+    background-clip: initial;
+    text-fill-color: inherit;
+    padding-bottom: 0.5rem;
+}
+
+body.theme-chagall h1 small {
+    color: var(--color-text-secondary);
+}
+
+body.theme-chagall label {
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    text-transform: none; /* More natural text */
+}
+
+body.theme-chagall input[type="number"],
+body.theme-chagall input[type="text"],
+body.theme-chagall select {
+    background-color: #fdf6e3; /* Solid parchment color */
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+}
+
+body.theme-chagall input:focus,
+body.theme-chagall select:focus {
+    border-color: var(--color-accent-yellow); /* Focus with luminous yellow */
+    box-shadow: 0 0 0 3px rgba(255, 195, 0, 0.4);
+}
+
+body.theme-chagall button#clear-button {
+    background-color: var(--color-accent-red);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    text-transform: none;
+    box-shadow: 0 4px 15px rgba(199, 0, 57, 0.3);
+    transition: all 0.2s ease;
+}
+
+body.theme-chagall button#clear-button:hover {
+    background-color: #e01e4c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(199, 0, 57, 0.4);
+}
+
+body.theme-chagall .lang-switcher button.active {
+    background-color: var(--color-accent-red);
+    color: #FFFFFF;
+}
+
+body.theme-chagall .footer-nav a {
+    color: rgba(253, 246, 227, 0.8); /* Faded text on the dark blue */
+}
+
+body.theme-chagall .footer-nav a:hover {
+    color: var(--color-accent-yellow); /* Glows yellow on hover */
+    text-decoration: none;
+}
+
+body.theme-chagall .content-container h2::before {
+    background-color: var(--color-accent-green); /* Rich green marker */
+}
+    border-bottom: none;
+    /* A vibrant, mosaic-like gradient for the text itself */
+    background: linear-gradient(90deg, var(--color-accent-pink) 0%, var(--color-accent-yellow) 50%, var(--color-accent-green) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    padding-bottom: 0.5rem;
+}
+
+body.theme-gaudi-london h1 small {
+    color: var(--color-text-secondary);
+}
+
+body.theme-gaudi-london label {
+    color: var(--color-text-secondary);
+    font-weight: 700;
+}
+
+body.theme-gaudi-london input[type="number"],
+body.theme-gaudi-london input[type="text"],
+body.theme-gaudi-london select {
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    border: 2px solid var(--color-border);
+    color: var(--color-text-primary);
+}
+
+body.theme-gaudi-london input:focus,
+body.theme-gaudi-london select:focus {
+    border-color: var(--color-accent-pink);
+    box-shadow: 0 0 0 3px rgba(233, 78, 119, 0.3);
+}
+
+body.theme-gaudi-london button#clear-button {
+    background-color: var(--color-accent-green);
+    color: #FFFFFF;
+    border: 2px solid var(--color-text-primary);
+    border-radius: 30px; /* Playful pill shape */
+    font-weight: 700;
+    text-transform: none;
+    box-shadow: 4px 4px 0px var(--color-text-primary);
+    transition: all 0.1s ease-in-out;
+}
+
+body.theme-gaudi-london button#clear-button:hover {
+    background-color: #38a86a; /* Slightly lighter green */
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--color-text-primary);
+}
+
+body.theme-gaudi-london .lang-switcher button.active {
+    background-color: var(--color-accent-pink);
+    color: #FFFFFF;
+}
+
+body.theme-gaudi-london .footer-nav a {
+    color: var(--color-surface);
+}
+
+body.theme-gaudi-london .footer-nav a:hover {
+    color: var(--color-accent-yellow);
+    text-decoration: none;
+}
+
+body.theme-gaudi-london .content-container h2::before {
+    background-color: var(--color-accent-pink);
 }
