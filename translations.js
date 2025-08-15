@@ -44,7 +44,7 @@ const translations = {
     errorEraNotFound: "元号「{eraName}」が見つかりません。",
     errorEraEnded: "{eraName}は{maxYear}年で終わりました。",
     // Footer Links
-    footerAbout: "About",
+    footerAbout: "サイト概要",
     footerGuide: "利用ガイド",
     footerPrivacy: "プライバシーポリシー",
   }
