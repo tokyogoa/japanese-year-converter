@@ -2,22 +2,24 @@
 
 /* --- Color & Style Variables --- */
 :root {
-    --color-background: #f8f9fa;
+    --color-background: #f8fafc; /* Slate 50 */
     --color-surface: #ffffff;
-    --color-text-primary: #111827; /* Deeper, more modern black */
-    --color-text-secondary: #6c757d;
-    --color-accent-blue: #0077cc; /* London-inspired vibrant blue */
-    --color-accent-blue-darker: #005fa3;
-    --color-accent-yellow: #ffc72c; /* Impactful yellow accent */
-    --color-accent-red: #e53935; /* Classic red for highlights */
-    --color-border: #dee2e6;
-    --color-error: #d93025;
+    --color-text-primary: #1e293b; /* Slate 800 */
+    --color-text-secondary: #64748b; /* Slate 500 */
+    --color-accent: #334155; /* Slate 700 - A sophisticated, muted accent */
+    --color-accent-darker: #1e293b; /* Slate 800 */
+    --color-border: #e2e8f0; /* Slate 200 */
+    --color-error: #dc2626; /* Red 600 */
+
+    /* Chagall theme colors will be defined under its own selector */
 }
 
 html {
     box-sizing: border-box;
     /* 기본 폰트 크기를 설정하여 rem 단위의 기준을 만듭니다. */
     font-size: 16px;
+    -webkit-font-smoothing: antialiased; /* Smoother fonts */
+    -moz-osx-font-smoothing: grayscale;
 }
 
 *, *::before, *::after {
@@ -35,82 +37,120 @@ body {
     margin: 0;
     background-color: var(--color-background);
     color: var(--color-text-primary);
+    line-height: 1.6; /* Improved readability */
 }
 
 /* --- Universal Transition --- */
-body, .converter-container, input, select, button {
-    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+/* Keep transitions subtle */
+body, .converter-container, input, select, button, .lang-switcher {
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 
-.converter-container {
+.converter-container,
+.age-calculator-container {
     background-color: var(--color-surface);
-    padding: 1.5rem; /* 모바일 화면에 맞게 내부 여백을 줄입니다. */
-    border-radius: 16px; /* 더 둥근 모서리 */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05), 0 10px 40px rgba(0,0,0,0.06); /* 더 부드러운 그림자 */
+    padding: 2rem; /* More padding */
+    border-radius: 12px; /* More modern radius */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02), 0 4px 16px rgba(0,0,0,0.04); /* Much subtler shadow */
+    border: 1px solid var(--color-border);
     width: 100%;
-    max-width: 450px;
+    max-width: 480px; /* Slightly wider */
     text-align: center;
-    margin: 1rem; /* 화면 가장자리에 여백 추가 */
+    margin: 1rem;
 }
 
 .lang-switcher {
-    position: fixed; /* Position relative to the viewport */
+    position: fixed;
     top: 1rem;
     right: 1rem;
     display: flex;
     gap: 0.5rem;
-    background-color: var(--color-background);
-    padding: 0.25rem;
-    border-radius: 6px;
-    z-index: 1000; /* Ensure it stays on top */
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 0.375rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    z-index: 1000;
 }
 
 .lang-switcher button {
     background: none;
     border: none;
-    padding: 0.25rem 0.5rem;
+    padding: 0.375rem 0.625rem;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500; /* Medium weight */
+    font-size: 0.875rem;
     color: var(--color-text-secondary);
-    border-radius: 4px;
+    border-radius: 6px;
     transition: background-color 0.2s, color 0.2s;
 }
 
 .lang-switcher button.active {
-    background-color: var(--color-accent-blue);
+    background-color: var(--color-accent);
     color: var(--color-surface);
 }
 
 .lang-switcher button#theme-switcher {
     font-size: 1rem;
     line-height: 1;
-    padding: 0.25rem;
-    width: 28px; /* Consistent size */
+    padding: 0.375rem;
+    width: 32px; /* Consistent size */
+    height: 32px;
 }
 
 h1 {
     color: var(--color-text-primary);
-    margin-bottom: 1.5rem;
-    /* H1 is a block, centered by its parent. The inline-block is moved to the span. */
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+    font-weight: 600; /* Semi-bold */
+    letter-spacing: -0.025em;
 }
 
 h1 span {
-    /* The impactful yellow accent, like stairs at Southbank */
-    border-bottom: 4px solid var(--color-accent-yellow);
-    padding-bottom: 0.5rem;
-    display: inline-block; /* Ensures the border only spans the text width */
+    /* Removed yellow underline */
+    border-bottom: none;
+    padding-bottom: 0;
+    display: inline;
 }
 
 h1 small {
-    font-size: 0.5em; /* Make subtitle significantly smaller */
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 400;
     color: var(--color-text-secondary);
-    display: block; /* Display on a new line */
-    margin-top: 0.5em; /* Increased space for better visual separation */
-    /* The following properties are no longer needed */
-    /* white-space: nowrap; */
-    /* vertical-align: middle; */
+    display: block;
+    margin-top: 0.25rem; /* Less space */
+}
+
+.age-calculator-container h2 {
+    color: var(--color-text-primary);
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.date-input-group {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* Override the 100% width for inputs inside this specific group */
+.date-input-group > input,
+.date-input-group > select {
+    width: auto; /* Let flexbox handle the width */
+}
+
+#birth-year {
+    flex: 2.5;
+    min-width: 80px;
+}
+
+#birth-month,
+#birth-day {
+    flex: 1.5;
+    min-width: 70px;
 }
 
 .input-group {
@@ -121,49 +161,62 @@ h1 small {
 label {
     display: block;
     margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: var(--color-text-secondary);
+    font-weight: 500; /* Medium weight */
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
 }
 
 input[type="number"],
 input[type="text"],
+input[type="date"],
 select {
     width: 100%;
-    padding: 0.8rem 1rem;
+    padding: 0.75rem 1rem;
     border: 1px solid var(--color-border);
     border-radius: 8px;
     box-sizing: border-box;
     font-size: 1rem;
-    background-color: var(--color-background);
+    font-family: inherit; /* Ensure consistent font */
+    background-color: var(--color-surface); /* White background */
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Remove ugly number input spinners */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 input:focus,
+input[type="date"]:focus,
 select:focus {
     outline: none;
-    border-color: var(--color-accent-blue);
-    background-color: var(--color-surface);
-    box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.2);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(51, 65, 85, 0.2);
 }
 
 /* The "Blue Door" button */
 button#clear-button {
     width: 100%;
-    padding: 0.8rem 1.5rem;
-    margin-top: 0.5rem; /* Space between inputs and button */
-    background-color: var(--color-accent-blue);
+    padding: 0.875rem 1.5rem;
+    margin-top: 1rem;
+    background-color: var(--color-accent);
     color: var(--color-surface);
     border: none;
     border-radius: 8px;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
 .japanese-input-container {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.75rem;
 }
 
 #japanese-era {
@@ -179,10 +232,23 @@ button#clear-button {
     margin-top: 1rem;
     min-height: 1.2em;
     font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.result-container {
+    margin-top: 1.5rem;
+    min-height: 1.5em;
+    font-weight: 500;
+    font-size: 1.125rem;
+    color: var(--color-text-primary);
+}
+
+.result-container.error {
+    color: var(--color-error);
 }
 
 button#clear-button:hover {
-    background-color: var(--color-accent-blue-darker);
+    background-color: var(--color-accent-darker);
 }
 
 footer {
@@ -190,7 +256,7 @@ footer {
     padding: 2rem;
     text-align: center;
     color: var(--color-text-secondary);
-    font-size: 0.9rem;
+    font-size: 0.875rem;
 }
 
 .footer-nav {
@@ -208,7 +274,7 @@ footer {
 }
 
 .footer-nav a:hover {
-    color: var(--color-accent-blue);
+    color: var(--color-accent);
     text-decoration: underline;
 }
 
@@ -219,14 +285,15 @@ body.content-page {
 
 .content-container {
     background-color: var(--color-surface);
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.04); /* Even more subtle shadow */
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02), 0 4px 16px rgba(0,0,0,0.04);
+    border: 1px solid var(--color-border);
     width: 100%;
-    max-width: 720px; /* More compact width */
+    max-width: 720px;
     margin: 2rem 1rem;
     text-align: left;
-    line-height: 1.65; /* Adjust for smaller font */
+    line-height: 1.7; /* More line height for long text */
 }
 
 .content-container header {
@@ -235,23 +302,25 @@ body.content-page {
 
 .content-container header a {
     text-decoration: none;
-    color: var(--color-accent-blue);
+    color: var(--color-accent);
     font-weight: 600;
 }
 
 .content-container h1 {
-    font-size: 1.8rem; /* Smaller heading */
-    font-weight: 700;
-    border-bottom: none;
+    font-size: 2rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
     letter-spacing: -0.02em;
 }
 
 .content-container h2 {
-    font-size: 1.3rem; /* Smaller subheading */
-    font-weight: 500; /* Lighter weight for a softer feel */
+    font-size: 1.5rem;
+    font-weight: 600;
     margin-top: 2.5rem;
     padding-bottom: 0;
-    border-bottom: none; /* Remove the underline */
+    border-bottom: none;
     letter-spacing: -0.01em;
     display: flex;
     align-items: center;
@@ -259,14 +328,8 @@ body.content-page {
 
 /* A subtle, colorful marker inspired by modern art */
 .content-container h2::before {
-    content: '';
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 0.8rem;
-    /* Use the primary colors from the homepage */
-    background-color: var(--color-accent-blue);
+    /* Remove the dot */
+    display: none;
 }
 
 .content-container h3 {
@@ -281,7 +344,7 @@ body.content-page {
 .content-container li,
 .content-container ul,
 .content-container ol {
-    font-size: 0.9rem; /* Smaller body text */
+    font-size: 1rem;
 }
 
 .content-divider {
@@ -294,130 +357,141 @@ body.content-page {
 /* 데스크톱 화면을 위한 미디어 쿼리 */
 @media (min-width: 768px) {
     .lang-switcher {
-        top: 2rem;
-        right: 2rem;
+        top: 1.5rem;
+        right: 1.5rem;
     }
 
     html {
         /* 데스크톱에서 기본 폰트 크기를 키워 전체적인 UI를 확대 */
-        font-size: 18px;
+        font-size: 16px; /* Keep base at 16px, use rem for scaling */
     }
-    .converter-container {
+    .converter-container,
+    .age-calculator-container {
         /* 데스크톱에서 변환기 최대 너비를 늘림 */
-        max-width: 650px;
+        max-width: 520px; /* A bit wider for desktop */
         /* 데스크톱에서는 기존의 넓은 여백을 다시 적용합니다. */
         padding: 2.5rem;
     }
     .content-container {
-        padding: 2.5rem 3rem;
+        padding: 3rem 4rem;
         margin: 2rem auto;
     }
 }
 
 /*
---- MARC CHAGALL THEME ---
-Inspired by the dreamlike, vibrant, and poetic colors of Marc Chagall.
-Luminous, emotional, and surreal.
+--- PIET MONDRIAN THEME ---
+Inspired by the abstract, geometric art of Piet Mondrian.
+Primary colors, black lines, and asymmetrical balance.
 */
 
-body.theme-chagall {
-    /* Chagall's iconic color palette */
-    --color-accent-blue: #0B2447;   /* Deep, celestial blue */
-    --color-accent-yellow: #FFC300; /* Luminous yellow */
-    --color-accent-red: #C70039;    /* Passionate red */
-    --color-accent-green: #1A5D1A;  /* Rich green */
+body.theme-mondrian {
+    /* Mondrian's core palette */
+    --color-accent-red: #D40920;
+    --color-accent-blue: #1255A2;
+    --color-accent-yellow: #F7D53B;
+    --color-line: #000000;
 
     /* Surfaces and Text */
-    --color-background: var(--color-accent-blue);
-    --color-surface: rgba(253, 246, 227, 0.95); /* Warm, glowing parchment (Solarized Light bg) */
-    --color-text-primary: #3a2d0b;
-    --color-text-secondary: #655533;
-    --color-border: #d3cbb8;
-    --color-error: #D93025;
+    --color-background: #f0f0f0; /* Light grey canvas */
+    --color-surface: #ffffff;
+    --color-text-primary: #000000;
+    --color-text-secondary: #555555;
+    --color-border: #cccccc; /* Lighter border for inputs */
+    --color-error: var(--color-accent-red); /* Use the theme's red for errors */
 
-    font-family: 'Inter', sans-serif; /* A softer, more classic font */
-    /* A subtle glow from the center, like a dream */
-    background-image:
-        radial-gradient(circle at center, #19376D, #0B2447);
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-background);
+    background-image: none; /* Remove gradient */
 }
 
-body.theme-chagall .converter-container,
-body.theme-chagall .content-container {
+body.theme-mondrian .converter-container,
+body.theme-mondrian .age-calculator-container,
+body.theme-mondrian .content-container {
     background-color: var(--color-surface);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-    border-radius: 16px; /* Softer, more organic corners */
-    box-shadow: 0 0 30px rgba(255, 195, 0, 0.2), 0 4px 15px rgba(0,0,0,0.3); /* A soft, yellow glow */
-    border: 1px solid #d3cbb8;
+    backdrop-filter: none;
+    border-radius: 0; /* Sharp corners */
+    box-shadow: 6px 6px 0px 0px var(--color-line); /* Hard shadow effect */
+    border: 2px solid var(--color-line);
 }
 
-body.theme-chagall h1 span {
-    border-bottom: none;
-    color: var(--color-accent-red); /* A passionate red title */
-    background: none; /* Override gradient from previous theme */
+body.theme-mondrian h1 span {
+    border-bottom: 8px solid var(--color-accent-yellow);
+    color: var(--color-text-primary);
+    padding-bottom: 0.25rem;
+    background: none;
     -webkit-background-clip: initial;
     -webkit-text-fill-color: inherit;
     background-clip: initial;
     text-fill-color: inherit;
+}
+
+body.theme-mondrian .age-calculator-container h2 {
+    color: var(--color-text-primary);
+    border-bottom: 4px solid var(--color-accent-blue);
     padding-bottom: 0.5rem;
+    display: inline-block;
 }
 
-body.theme-chagall h1 small {
+body.theme-mondrian h1 small {
     color: var(--color-text-secondary);
 }
 
-body.theme-chagall label {
-    color: var(--color-text-secondary);
+body.theme-mondrian label {
+    color: var(--color-text-primary);
     font-weight: 600;
-    text-transform: none; /* More natural text */
+    text-transform: none;
 }
 
-body.theme-chagall input[type="number"],
-body.theme-chagall input[type="text"],
-body.theme-chagall select {
-    background-color: #fdf6e3; /* Solid parchment color */
-    border-radius: 8px;
-    border: 1px solid var(--color-border);
+body.theme-mondrian input[type="number"],
+body.theme-mondrian input[type="text"],
+body.theme-mondrian input[type="date"],
+body.theme-mondrian select {
+    background-color: var(--color-surface);
+    border-radius: 0;
+    border: 2px solid var(--color-line);
     color: var(--color-text-primary);
 }
 
-body.theme-chagall input:focus,
-body.theme-chagall select:focus {
-    border-color: var(--color-accent-yellow); /* Focus with luminous yellow */
-    box-shadow: 0 0 0 3px rgba(255, 195, 0, 0.4);
+body.theme-mondrian input:focus,
+body.theme-mondrian input[type="date"]:focus,
+body.theme-mondrian select:focus {
+    border-color: var(--color-accent-blue);
+    box-shadow: 0 0 0 3px var(--color-accent-yellow);
+    outline: none;
 }
 
-body.theme-chagall button#clear-button {
+body.theme-mondrian button#clear-button {
     background-color: var(--color-accent-red);
     color: #FFFFFF;
-    border: none;
-    border-radius: 8px;
+    border: 2px solid var(--color-line);
+    border-radius: 0;
     font-weight: 700;
     text-transform: none;
-    box-shadow: 0 4px 15px rgba(199, 0, 57, 0.3);
-    transition: all 0.2s ease;
+    box-shadow: 3px 3px 0px 0px var(--color-line);
+    transition: all 0.1s ease-in-out;
 }
 
-body.theme-chagall button#clear-button:hover {
-    background-color: #e01e4c;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(199, 0, 57, 0.4);
+body.theme-mondrian button#clear-button:hover {
+    background-color: #E73448;
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0px 0px var(--color-line);
 }
 
-body.theme-chagall .lang-switcher button.active {
-    background-color: var(--color-accent-red);
+body.theme-mondrian .lang-switcher button.active {
+    background-color: var(--color-accent-blue);
     color: #FFFFFF;
 }
 
-body.theme-chagall .footer-nav a {
-    color: rgba(253, 246, 227, 0.8); /* Faded text on the dark blue */
+body.theme-mondrian .footer-nav a {
+    color: var(--color-text-secondary);
 }
 
-body.theme-chagall .footer-nav a:hover {
-    color: var(--color-accent-yellow); /* Glows yellow on hover */
+body.theme-mondrian .footer-nav a:hover {
+    color: var(--color-accent-blue);
     text-decoration: none;
+    border-bottom: 2px solid var(--color-accent-yellow);
 }
 
-body.theme-chagall .content-container h2::before {
-    background-color: var(--color-accent-green); /* Rich green marker */
+body.theme-mondrian .content-container h2::before {
+    display: none;
 }

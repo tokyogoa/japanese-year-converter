@@ -18,6 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // State for the current error message
     let currentErrorState = null; // e.g., { key: 'errorKey', params: { ... } }
 
+    // --- Age Calculator Elements and State ---
+    const birthYearInput = document.getElementById('birth-year');
+    const birthMonthSelect = document.getElementById('birth-month');
+    const birthDaySelect = document.getElementById('birth-day');
+    const referenceDateInput = document.getElementById('reference-date');
+    const ageResultDiv = document.getElementById('age-result');
+    let currentAgeErrorState = null; // State for age calculator errors
+
     function clearError() {
         currentErrorState = null;
         errorMessage.textContent = '';
@@ -74,6 +82,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentEraMessage) {
             showEraNotice(currentEraMessage[lang] || currentEraMessage['en']);
         }
+
+        // Re-render age calculator error or result
+        if (ageResultDiv) {
+            if (currentAgeErrorState) {
+                showAgeError(currentAgeErrorState.key, currentAgeErrorState.params);
+            } else if (ageResultDiv.textContent && !ageResultDiv.classList.contains('error')) {
+                // Re-run calculation to update the result string with the new language.
+                // This is more robust than trying to parse and re-translate the old string.
+                calculateAge();
+            }
+            // Update date input placeholders
+            if (birthYearInput) {
+                updateDatePlaceholders();
+            }
+        }
     }
 
     function populateEraDropdown() {
@@ -83,6 +106,22 @@ document.addEventListener('DOMContentLoaded', () => {
             option.textContent = `${era.name} (${era.kanji})`;
             japaneseEraSelect.appendChild(option);
         });
+    }
+
+    function getJapaneseEraForYear(year) {
+        if (isNaN(year)) return null;
+    
+        for (const era of eras) {
+            if (isYearInRange(year, era.start, era.end)) {
+                const eraYear = year - era.start.year + 1;
+                return {
+                    name: era.name,
+                    kanji: era.kanji,
+                    year: eraYear
+                };
+            }
+        }
+        return null;
     }
 
 
@@ -277,6 +316,169 @@ document.addEventListener('DOMContentLoaded', () => {
             return browserLang;
         }
         return DEFAULT_LANG;
+    }
+
+    // --- Age Calculator Logic ---
+    function showAgeError(key, params = {}) {
+        currentAgeErrorState = { key, params };
+        let message = translations[currentLang][key] || 'Error';
+        for (const [param, value] of Object.entries(params)) {
+            message = message.replace(`{${param}}`, value);
+        }
+        ageResultDiv.textContent = message;
+        ageResultDiv.classList.add('error');
+    }
+
+
+    function clearAgeError() {
+        currentAgeErrorState = null;
+        if (ageResultDiv) {
+            ageResultDiv.textContent = '';
+            ageResultDiv.classList.remove('error');
+        }
+    }
+
+    // Only initialize age calculator if its elements are on the page
+    if (birthYearInput && birthMonthSelect && birthDaySelect && referenceDateInput && ageResultDiv) {
+        
+        function updateDatePlaceholders() {
+            const monthPlaceholder = birthMonthSelect.querySelector('option[value=""]');
+            if (monthPlaceholder) {
+                monthPlaceholder.textContent = translations[currentLang].birthMonthPlaceholder || "Month";
+            }
+            const dayPlaceholder = birthDaySelect.querySelector('option[value=""]');
+            if (dayPlaceholder) {
+                dayPlaceholder.textContent = translations[currentLang].birthDayPlaceholder || "Day";
+            }
+        }
+
+        function updateDayOptions() {
+            const year = parseInt(birthYearInput.value, 10);
+            const month = parseInt(birthMonthSelect.value, 10);
+            const selectedDay = birthDaySelect.value;
+
+            const daysInMonth = (year && month) ? new Date(year, month, 0).getDate() : 31;
+
+            birthDaySelect.innerHTML = '';
+
+            const dayPlaceholder = document.createElement('option');
+            dayPlaceholder.value = "";
+            dayPlaceholder.textContent = translations[currentLang].birthDayPlaceholder || "Day";
+            dayPlaceholder.disabled = true;
+            dayPlaceholder.selected = true;
+            birthDaySelect.appendChild(dayPlaceholder);
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                birthDaySelect.appendChild(option);
+            }
+
+            if (selectedDay && parseInt(selectedDay, 10) <= daysInMonth) {
+                birthDaySelect.value = selectedDay;
+            }
+        }
+
+        function populateDateInputs() {
+            const monthPlaceholder = document.createElement('option');
+            monthPlaceholder.value = "";
+            monthPlaceholder.textContent = translations[currentLang].birthMonthPlaceholder || "Month";
+            monthPlaceholder.disabled = true;
+            monthPlaceholder.selected = true;
+            birthMonthSelect.appendChild(monthPlaceholder);
+
+            for (let i = 1; i <= 12; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                birthMonthSelect.appendChild(option);
+            }
+            updateDayOptions();
+        }
+
+        function setTodayAsReference() {
+            const today = new Date();
+            // toISOString() is UTC-based, so adjust for the local timezone
+            today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+            referenceDateInput.value = today.toISOString().slice(0, 10);
+        }
+
+        function calculateAge() {
+            const year = birthYearInput.value;
+            const month = birthMonthSelect.value;
+            const day = birthDaySelect.value;
+            const referenceDateValue = referenceDateInput.value;
+
+            // If any part of the birth date is missing, just clear the result and any existing errors.
+            if (!year || !month || !day) {
+                ageResultDiv.textContent = '';
+                clearAgeError();
+                return;
+            }
+            
+            // Now that we know we have all inputs, clear previous errors before new validation.
+            clearAgeError();
+
+            const yearNum = parseInt(year, 10);
+            const monthNum = parseInt(month, 10);
+            const dayNum = parseInt(day, 10);
+
+            if (isNaN(yearNum) || yearNum < 1000 || yearNum > 9999) {
+                return; // Don't calculate for invalid year formats to prevent errors
+            }
+
+            const daysInMonth = new Date(yearNum, monthNum, 0).getDate();
+            if (dayNum > daysInMonth) {
+                showAgeError('errorInvalidDate');
+                return;
+            }
+
+            const birthDate = new Date(yearNum, monthNum - 1, dayNum);
+            const referenceDate = new Date(referenceDateValue);
+
+            if (birthDate > referenceDate) {
+                showAgeError('errorBirthDateInFuture');
+                return;
+            }
+
+            let age = referenceDate.getFullYear() - birthDate.getFullYear();
+            const monthDifference = referenceDate.getMonth() - birthDate.getMonth();
+            const dayDifference = referenceDate.getDate() - birthDate.getDate();
+
+            if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+                age--;
+            }
+            
+            const birthEra = getJapaneseEraForYear(yearNum);
+
+            if (birthEra) {
+                let resultText = (translations[currentLang].ageResultTextWithEra || "{eraName} {eraYear} ({age} years old)");
+                resultText = resultText
+                    .replace('{eraName}', currentLang === 'ja' ? birthEra.kanji : birthEra.name)
+                    .replace('{eraYear}', birthEra.year)
+                    .replace('{age}', age);
+                ageResultDiv.textContent = resultText;
+            } else {
+                // Fallback for years outside the era range
+                ageResultDiv.textContent = (translations[currentLang].ageResultText).replace('{age}', age);
+            }
+        }
+
+        populateDateInputs();
+        
+        // Add event listeners for automatic calculation
+        birthYearInput.addEventListener('input', () => {
+            updateDayOptions();
+            calculateAge();
+        });
+        birthMonthSelect.addEventListener('change', () => {
+            updateDayOptions();
+            calculateAge();
+        });
+        birthDaySelect.addEventListener('change', calculateAge);
+        referenceDateInput.addEventListener('input', calculateAge);
+        setTodayAsReference();
     }
 
     // --- Initialization ---

@@ -3,10 +3,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const themeSwitcher = document.getElementById('theme-switcher');
     const body = document.body;
-    const themeClassName = 'theme-chagall';
+    const themeClassName = 'theme-mondrian';
 
     // On page load, apply the saved theme
-    if (localStorage.getItem('theme') === 'chagall') {
+    if (localStorage.getItem('theme') === 'mondrian') {
         body.classList.add(themeClassName);
     }
 
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Save the current state to localStorage
             if (body.classList.contains(themeClassName)) {
-                localStorage.setItem('theme', 'chagall');
+                localStorage.setItem('theme', 'mondrian');
             } else {
                 localStorage.removeItem('theme');
             }

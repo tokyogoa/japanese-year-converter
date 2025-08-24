@@ -40,7 +40,7 @@
     <div class="lang-switcher">
         <button data-lang="en">EN</button>
         <button data-lang="ja" class="active">JA</button>
-        <button id="theme-switcher" title="Toggle Art Mode">🎨</button>
+        <button id="theme-switcher" title="Toggle Mondrian Mode">🎨</button>
     </div>
 
     <div class="converter-container">
@@ -67,6 +67,23 @@
         <button id="clear-button" data-i18n-key="clearButton">クリア</button>
 
         <p id="error-message"></p>
+    </div>
+
+    <div class="age-calculator-container">
+        <h2 data-i18n-key="ageCalculatorTitle">만 나이 계산기</h2>
+        <div class="input-group">
+            <label data-i18n-key="birthDateLabel">생년월일</label>
+            <div class="date-input-group">
+                <input type="number" id="birth-year" data-i18n-key-placeholder="birthYearPlaceholder" placeholder="YYYY">
+                <select id="birth-month"></select>
+                <select id="birth-day"></select>
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="reference-date" data-i18n-key="referenceDateLabel">기준일</label>
+            <input type="date" id="reference-date">
+        </div>
+        <div id="age-result" class="result-container"></div>
     </div>
 
     <footer>

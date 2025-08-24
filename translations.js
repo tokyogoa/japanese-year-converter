@@ -23,6 +23,19 @@ const translations = {
     footerAbout: "About",
     footerGuide: "User Guide",
     footerPrivacy: "Privacy Policy",
+    // Age Calculator
+    ageCalculatorTitle: "Age Calculator",
+    birthDateLabel: "Date of Birth",
+    birthYearPlaceholder: "Year",
+    birthMonthPlaceholder: "Month",
+    birthDayPlaceholder: "Day",
+    referenceDateLabel: "Reference Date",
+    calculateAgeButton: "Calculate Age",
+    ageResultText: "You are {age} years old.",
+    ageResultTextWithEra: "{eraName} {eraYear} ({age} years old)",
+    errorInvalidDate: "Please enter a valid date.",
+    errorBirthDate: "Please enter your date of birth.",
+    errorBirthDateInFuture: "Date of birth cannot be later than the reference date.",
   },
   ja: {
     // Page Title
@@ -47,5 +60,18 @@ const translations = {
     footerAbout: "サイト概要",
     footerGuide: "利用ガイド",
     footerPrivacy: "プライバシーポリシー",
+    // Age Calculator
+    ageCalculatorTitle: "年齢計算機",
+    birthDateLabel: "生年月日",
+    birthYearPlaceholder: "年",
+    birthMonthPlaceholder: "月",
+    birthDayPlaceholder: "日",
+    referenceDateLabel: "基準日",
+    calculateAgeButton: "年齢を計算",
+    ageResultText: "満{age}歳です。",
+    ageResultTextWithEra: "{eraName}{eraYear}年生まれ (満{age}歳)",
+    errorInvalidDate: "有効な日付を入力してください。",
+    errorBirthDate: "生年月日を入力してください。",
+    errorBirthDateInFuture: "生年月日は基準日より未来に設定できません。",
   }
 };
