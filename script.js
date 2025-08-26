@@ -73,6 +73,23 @@ document.addEventListener('DOMContentLoaded', () => {
         errorMessage.textContent = message;
     }
 
+    function formatDateForLocale(dateString) {
+        if (!dateString) return '';
+        const [year, month, day] = dateString.split('-').map(Number);
+        // Use UTC to avoid timezone issues with the date object
+        const date = new Date(Date.UTC(year, month - 1, day));
+
+        switch (currentLang) {
+            case 'ja':
+                return `${date.getUTCMonth() + 1}月${date.getUTCDate()}日`;
+            case 'ko':
+                return `${date.getUTCMonth() + 1}월 ${date.getUTCDate()}일`;
+            case 'en':
+            default:
+                return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', timeZone: 'UTC' });
+        }
+    }
+
     // --- Year Converter Logic ---
 
     function handleWesternYearInput() {
@@ -111,9 +128,19 @@ document.addEventListener('DOMContentLoaded', () => {
             japaneseEraYearInput.value = eraYear;
 
             // Check for crossover years
-            const nextEra = eras[eras.indexOf(era) - 1];
-            if (nextEra && new Date(nextEra.start_date).getFullYear() === year) {
-                 showError(`注意: ${year}年は${era.name}と${nextEra.name}の両方が存在します。`);
+            const endingEra = eras[eras.indexOf(era) + 1];
+            if (endingEra && new Date(endingEra.end_date).getFullYear() === year) {
+                const newEra = era;
+                const prevEra = endingEra;
+
+                const message = getTranslation('infoCrossoverYear', {
+                    year: year,
+                    prevEraName: prevEra.name,
+                    prevEraEndDate: formatDateForLocale(prevEra.end_date),
+                    newEraName: newEra.name,
+                    newEraStartDate: formatDateForLocale(newEra.start_date)
+                });
+                showError(message);
             }
         } else {
             clearJapaneseInputs();
@@ -164,9 +191,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         westernYearInput.value = westernYear;
         
-        if (eraEndDate && westernYear === eraEndDate.getFullYear()) {
-            const prevEra = eras[eras.indexOf(era) + 1];
-            if(prevEra) showError(`注意: ${westernYear}年は${prevEra.name}と${era.name}の両方が存在します。`);
+        // Check for crossover years
+        const startingEra = eras[eras.indexOf(era) - 1];
+        if (startingEra && startingEra.start_year === westernYear) {
+            const newEra = startingEra;
+            const prevEra = era;
+
+            const message = getTranslation('infoCrossoverYear', {
+                year: westernYear,
+                prevEraName: prevEra.name,
+                prevEraEndDate: formatDateForLocale(prevEra.end_date),
+                newEraName: newEra.name,
+                newEraStartDate: formatDateForLocale(newEra.start_date)
+            });
+            showError(message);
         }
 
         isUpdating = false;
@@ -237,10 +275,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const birthEra = getEraForDate(birthDate);
         if (birthEra) {
+            let eraDisplayName;
+            switch (currentLang) {
+                case 'ko':
+                    eraDisplayName = birthEra.korean || birthEra.name;
+                    break;
+                case 'en':
+                    eraDisplayName = birthEra.romaji || birthEra.name;
+                    break;
+                default: // 'ja' and fallback
+                    eraDisplayName = birthEra.name;
+            }
+
             const eraYear = year - birthEra.offset;
             const eraYearDisplay = eraYear === 1 ? '元' : eraYear;
             ageResultDiv.textContent = getTranslation('ageResultTextWithEra', {
-                eraName: birthEra.name,
+                eraName: eraDisplayName,
                 eraYear: eraYearDisplay,
                 age: age
             });

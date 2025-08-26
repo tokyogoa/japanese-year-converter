@@ -36,12 +36,13 @@ const translations = {
     errorInvalidDate: "Please enter a valid date.",
     errorBirthDate: "Please enter your date of birth.",
     errorBirthDateInFuture: "Date of birth cannot be later than the reference date.",
+    infoCrossoverYear: "Note: {year} contains two eras. {prevEraName} ends on {prevEraEndDate}, and {newEraName} begins on {newEraStartDate}.",
   },
   ko: {
     // Page Title
     pageTitle: "일본 연호 변환 및 조견표 | 레이와, 헤이세이, 쇼와",
     pageTitleMain: "일본 연호 변환기",
-    pageTitleSub: "와레키/세이레키 계산기",
+    pageTitleSub: "일본연호/서력 변환기",
     // Labels
     westernYearLabel: "서기 (예: 2025)",
     japaneseYearLabel: "일본 연호",
@@ -71,6 +72,7 @@ const translations = {
     ageResultTextWithEra: "{eraName} {eraYear}년생 (만 {age}세)",
     errorInvalidDate: "올바른 날짜를 입력하세요.",
     errorBirthDateInFuture: "생년월일은 기준일보다 미래일 수 없습니다.",
+    infoCrossoverYear: "참고: {year}년은 두 개의 연호가 존재합니다. {prevEraName}은(는) {prevEraEndDate}까지이며, {newEraName}은(는) {newEraStartDate}부터 시작됩니다.",
   },
   ja: {
     // Page Title
@@ -108,5 +110,6 @@ const translations = {
     errorInvalidDate: "有効な日付を入力してください。",
     errorBirthDate: "生年月日を入力してください。",
     errorBirthDateInFuture: "生年月日は基準日より未来に設定できません。",
+    infoCrossoverYear: "注意: {year}年には二つの元号が存在します。{prevEraName}は{prevEraEndDate}まで、{newEraName}は{newEraStartDate}から始まります。",
   }
 };
