@@ -1,44 +1,43 @@
 // data.js
-// This file contains the start and end dates for modern Japanese eras.
-// All dates are in the Gregorian calendar.
-// The 'eras' array is sorted in reverse chronological order (newest first).
-// This order is important for the conversion logic in script.js, which iterates
-// through this array to find the most recent matching era for a given Western year.
-
 const eras = [
-  {
-    name: "Reiwa",
-    kanji: "令和",
-    // Started on the accession of Emperor Naruhito.
-    start: { year: 2019, month: 5, day: 1 },
-    end: null // ongoing
-  },
-  {
-    name: "Heisei",
-    kanji: "平成",
-    // Started the day after Emperor Showa's death, ended on Emperor Akihito's abdication.
-    start: { year: 1989, month: 1, day: 8 },
-    end: { year: 2019, month: 4, day: 30 }
-  },
-  {
-    name: "Showa",
-    kanji: "昭和",
-    // Started on the accession of Emperor Showa (Hirohito), ended on his death.
-    start: { year: 1926, month: 12, day: 25 },
-    end: { year: 1989, month: 1, day: 7 }
-  },
-  {
-    name: "Taisho",
-    kanji: "大正",
-    // Started on the accession of Emperor Taisho, ended on his death.
-    start: { year: 1912, month: 7, day: 30 },
-    end: { year: 1926, month: 12, day: 24 }
-  },
-  {
-    name: "Meiji",
-    kanji: "明治",
-    // Started with the Meiji Restoration, ended on Emperor Meiji's death.
-    start: { year: 1868, month: 1, day: 25 },
-    end: { year: 1912, month: 7, day: 29 }
-  }
+    {
+        name: "令和",
+        romaji: "Reiwa",
+        start_date: "2019-05-01",
+        end_date: null, // Present
+        start_year: 2019,
+        offset: 2018
+    },
+    {
+        name: "平成",
+        romaji: "Heisei",
+        start_date: "1989-01-08",
+        end_date: "2019-04-30",
+        start_year: 1989,
+        offset: 1988
+    },
+    {
+        name: "昭和",
+        romaji: "Showa",
+        start_date: "1926-12-25",
+        end_date: "1989-01-07",
+        start_year: 1926,
+        offset: 1925
+    },
+    {
+        name: "大正",
+        romaji: "Taisho",
+        start_date: "1912-07-30",
+        end_date: "1926-12-24",
+        start_year: 1912,
+        offset: 1911
+    },
+    {
+        name: "明治",
+        romaji: "Meiji",
+        start_date: "1868-01-25",
+        end_date: "1912-07-29",
+        start_year: 1868,
+        offset: 1867
+    }
 ];

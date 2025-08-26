@@ -37,6 +37,41 @@ const translations = {
     errorBirthDate: "Please enter your date of birth.",
     errorBirthDateInFuture: "Date of birth cannot be later than the reference date.",
   },
+  ko: {
+    // Page Title
+    pageTitle: "일본 연호 변환 및 조견표 | 레이와, 헤이세이, 쇼와",
+    pageTitleMain: "일본 연호 변환기",
+    pageTitleSub: "와레키/세이레키 계산기",
+    // Labels
+    westernYearLabel: "서기 (예: 2025)",
+    japaneseYearLabel: "일본 연호",
+    // Placeholders
+    westernYearPlaceholder: "서기 입력",
+    japaneseYearPlaceholder: "년",
+    // Buttons
+    clearButton: "초기화",
+    // Error Messages
+    errorValidYear: "올바른 서기를 입력하세요.",
+    errorMinYear: "{year}년 이후로 입력해야 합니다.",
+    errorPositiveYear: "올바른 연도를 입력하세요.",
+    errorEraNotFound: "연호 '{eraName}'를 찾을 수 없습니다.",
+    errorEraEnded: "{eraName} 연호는 {maxYear}년에 종료되었습니다.",
+    // Footer Links
+    footerAbout: "사이트 소개",
+    footerGuide: "이용 안내",
+    footerPrivacy: "개인정보처리방침",
+    // Age Calculator
+    ageCalculatorTitle: "만 나이 계산기",
+    birthDateLabel: "생년월일",
+    birthYearPlaceholder: "년",
+    birthMonthPlaceholder: "월",
+    birthDayPlaceholder: "일",
+    referenceDateLabel: "기준일",
+    ageResultText: "만 {age}세입니다.",
+    ageResultTextWithEra: "{eraName} {eraYear}년생 (만 {age}세)",
+    errorInvalidDate: "올바른 날짜를 입력하세요.",
+    errorBirthDateInFuture: "생년월일은 기준일보다 미래일 수 없습니다.",
+  },
   ja: {
     // Page Title
     pageTitle: "和暦・西暦の早見表と変換 | 令和・平成・昭和対応",
