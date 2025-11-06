@@ -14,22 +14,30 @@
 </head>
 <body class="content-page">
 
+    <div class="lang-switcher">
+        <button data-lang="ja">JA</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="ko">KO</button>
+        <button data-lang="zh">ZH</button>
+        <button id="theme-switcher" title="Toggle Mondrian Mode">🎨</button>
+    </div>
+
     <div class="content-container">
         <header>
-            <a href="./">&larr; ホームに戻る</a>
+            <a href="./" data-i18n-key="backToHome">&larr; ホームに戻る</a>
         </header>
 
         <main>
             <article>
-                <h1>利用ガイド</h1>
-                <h2>ツールの使い方</h2>
-                <h3>和暦・西暦変換</h3>
-                <p>西暦か和暦のどちらか一方に年数を入力すると、もう一方が自動で変換されます。</p>
-                <h3>年齢計算機</h3>
-                <p>「生年月日」と「基準日」（初期設定は今日）を入力すると、満年齢と生まれた年の元号が自動で計算されます。</p>
+                <h1 data-i18n-key="guideTitle">利用ガイド</h1>
+                <h2 data-i18n-key="guideSubTitle1">ツールの使い方</h2>
+                <h3 data-i18n-key="guideSubTitle2">和暦・西暦変換</h3>
+                <p data-i18n-key="guideP1">西暦か和暦のどちらか一方に年数を入力すると、もう一方が自動で変換されます。</p>
+                <h3 data-i18n-key="guideSubTitle3">年齢計算機</h3>
+                <p data-i18n-key="guideP2">「生年月日」と「基準日」（初期設定は今日）を入力すると、満年齢と生まれた年の元号が自動で計算されます。</p>
 
-                <h2>各元号について</h2>
-                <p>和暦（元号）は、天皇の即位などを機に改元される日本独自の年の数え方です。年の途中で元号が変更された年は、日付によって元号が異なります。例えば、1989年は1月7日までが「昭和64年」で、1月8日からが「平成元年」となります。当ツールでは西暦を入力すると、このような変更があった年に注意メッセージを表示します。</p>
+                <h2 data-i18n-key="guideSubTitle4">各元号について</h2>
+                <p data-i18n-key="guideP3">和暦（元号）は、天皇の即位などを機に改元される日本独自の年の数え方です。年の途中で元号が変更された年は、日付によって元号が異なります。例えば、1989年は1月7日までが「昭和64年」で、1月8日からが「平成元年」となります。当ツールでは西暦を入力すると、このような変更があった年に注意メッセージを表示します。</p>
                 <ul>
                     <li><strong>令和 (Reiwa):</strong> 2019年5月1日〜現在</li>
                     <li><strong>平成 (Heisei):</strong> 1989年1月8日〜2019年4月30日</li>
@@ -37,34 +45,15 @@
                     <li><strong>大正 (Taisho):</strong> 1912年7月30日〜1926年12月24日</li>
                     <li><strong>明治 (Meiji):</strong> 1868年1月25日〜1912年7月29日</li>
                 </ul>
-
-                <hr class="content-divider">
-
-                <h1>User Guide</h1>
-                <h2>How to Use</h2>
-                <h3>Era Converter</h3>
-                <p>Enter a year in either the Western or Japanese calendar fields, and the other will be converted automatically.</p>
-                <h3>Age Calculator</h3>
-                <p>Enter your "Date of Birth" and the "Reference Date" (defaults to today) to automatically calculate your age and the Japanese era you were born in.</p>
-
-                <h2>About the Eras</h2>
-                <p>The Japanese era (Wareki) is a unique way of counting years. In years when an era change occurred, the era name depends on the specific date. For example, in 1989, dates up to January 7th are "Showa 64," while dates from January 8th onward are "Heisei 1." Our tool displays a notice for such crossover years.</p>
-                <ul>
-                    <li><strong>Reiwa:</strong> From May 1, 2019, to present.</li>
-                    <li><strong>Heisei:</strong> From January 8, 1989, to April 30, 2019.</li>
-                    <li><strong>Showa:</strong> From December 25, 1926, to January 7, 1989.</li>
-                    <li><strong>Taisho:</strong> From July 30, 1912, to December 24, 1926.</li>
-                    <li><strong>Meiji:</strong> From January 25, 1868, to July 29, 1912.</li>
-                </ul>
             </article>
         </main>
     </div>
 
     <footer>
         <nav class="footer-nav">
-            <a href="./">ホーム</a> 
-            <a href="about.html">サイト概要</a>
-            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="./" data-i18n-key="footerHome">ホーム</a> 
+            <a href="about.html" data-i18n-key="footerAbout">サイト概要</a>
+            <a href="privacy.html" data-i18n-key="footerPrivacy">プライバシーポリシー</a>
         </nav>
 
         <!-- 도구들 드롭다운 메뉴 -->
@@ -78,8 +67,8 @@
         <p>© 2025. azzaman All Rights Reserved.</p>
     </footer>
 
-
-
-    <script src="theme.js?v=1.2"></script>
+    <script src="translations.js?v=1.5"></script>
+    <script src="theme.js?v=1.5"></script>
+    <script src="subpage.js?v=1.5"></script>
 </body>
 </html>

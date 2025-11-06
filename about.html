@@ -14,30 +14,33 @@
 </head>
 <body class="content-page">
 
+    <div class="lang-switcher">
+        <button data-lang="ja">JA</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="ko">KO</button>
+        <button data-lang="zh">ZH</button>
+        <button id="theme-switcher" title="Toggle Mondrian Mode">🎨</button>
+    </div>
+
     <div class="content-container">
         <header>
-            <a href="./">&larr; ホームに戻る</a>
+            <a href="./" data-i18n-key="backToHome">&larr; ホームに戻る</a>
         </header>
 
         <main>
             <article>
-                <h1>サイト概要</h1>
-                <p>「和暦・西暦変換」は、和暦と西暦の変換、そして生年月日から年齢と元号を計算するシンプルな無料ツールです。日本の元号システムに興味があり、多くの人が感じる不便さを解決したいという思いからこのサイトを立ち上げました。</p>
-                <p>ご意見・ご感想は <strong>tokyogoa@yahoo.co.jp</strong> までお気軽にご連絡ください。</p>
-
-                <hr class="content-divider">
-
-                <p>The "Wareki/Seireki Converter" is a simple, free tool for quickly converting between Japanese eras (Wareki) and the Western calendar (Seireki), as well as calculating your age and birth era from your date of birth. I created this site out of an interest in the Japanese era system and a desire to solve the inconvenience many people feel with year conversions.</p>
-                <p>Please feel free to send your opinions and feedback to <strong>tokyogoa@yahoo.co.jp</strong>.</p>
+                <h1 data-i18n-key="aboutTitle">サイト概要</h1>
+                <p data-i18n-key="aboutP1">「和暦・西暦変換」は、和暦と西暦の変換、そして生年月日から年齢と元号を計算するシンプルな無料ツールです。日本の元号システムに興味があり、多くの人が感じる不便さを解決したいという思いからこのサイトを立ち上げました。</p>
+                <p><span data-i18n-key="aboutP2">ご意見・ご感想は tokyogoa@yahoo.co.jp までお気軽にご連絡ください。</span></p>
             </article>
         </main>
     </div>
 
     <footer>
         <nav class="footer-nav">
-            <a href="./">ホーム</a> 
-            <a href="guide.html">利用ガイド</a>
-            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="./" data-i18n-key="footerHome">ホーム</a> 
+            <a href="guide.html" data-i18n-key="footerGuide">利用ガイド</a>
+            <a href="privacy.html" data-i18n-key="footerPrivacy">プライバシーポリシー</a>
         </nav>
 
         <!-- 도구들 드롭다운 메뉴 -->
@@ -51,8 +54,8 @@
         <p>© 2025. azzaman All Rights Reserved.</p>
     </footer>
 
-
-
-    <script src="theme.js?v=1.2"></script>
+    <script src="translations.js?v=1.5"></script>
+    <script src="theme.js?v=1.5"></script>
+    <script src="subpage.js?v=1.5"></script>
 </body>
 </html>

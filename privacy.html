@@ -14,35 +14,35 @@
 </head>
 <body class="content-page">
 
+    <div class="lang-switcher">
+        <button data-lang="ja">JA</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="ko">KO</button>
+        <button data-lang="zh">ZH</button>
+        <button id="theme-switcher" title="Toggle Mondrian Mode">🎨</button>
+    </div>
+
     <div class="content-container">
         <header>
-            <a href="./">&larr; ホームに戻る</a>
+            <a href="./" data-i18n-key="backToHome">&larr; ホームに戻る</a>
         </header>
 
         <main>
             <article>
-                <h1>プライバシーポリシー</h1>
-                <p><em>最終更新日: 2025年8月15日</em></p>
-                <p>和暦・西暦変換（以下、「当サイト」）は、サービスの品質向上と広告配信（Google AdSense）、アクセス解析（Google Analytics）のためCookieを使用します。Cookieは匿名で収集され、個人を特定するものではありません。Cookieの利用はブラウザ設定で拒否できます。</p>
-                <p>当サイトの情報は正確性を期しておりますが、内容を保証するものではありません。掲載情報によって生じたいかなる損害についても、一切の責任を負いかねますのでご了承ください。</p>
-                <p>本ポリシーは、法令の改正等により予告なく変更することがあります。</p>
-
-                <hr class="content-divider">
-
-                <h1>Privacy Policy</h1>
-                <p><em>Last Updated: August 15, 2025</em></p>
-                <p>This website ("the Site") uses Cookies for service quality improvement, ad delivery (Google AdSense), and access analysis (Google Analytics). Cookies are collected anonymously and do not identify individuals. You can refuse the use of Cookies through your browser settings.</p>
-                <p>While we strive for accuracy in the information on this site, we do not guarantee its contents. We are not liable for any damages incurred from the information provided.</p>
-                <p>This policy is subject to change without notice due to legal revisions or other reasons.</p>
+                <h1 data-i18n-key="privacyTitle">プライバシーポリシー</h1>
+                <p><em><span data-i18n-key="privacyLastUpdated">最終更新日: 2025年8月15日</span></em></p>
+                <p data-i18n-key="privacyP1">和暦・西暦変換（以下、「当サイト」）は、サービスの品質向上と広告配信（Google AdSense）、アクセス解析（Google Analytics）のためCookieを使用します。Cookieは匿名で収集され、個人を特定するものではありません。Cookieの利用はブラウザ設定で拒否できます。</p>
+                <p data-i18n-key="privacyP2">当サイトの情報は正確性を期しておりますが、内容を保証するものではありません。掲載情報によって生じたいかなる損害についても、一切の責任を負いかねますのでご了承ください。</p>
+                <p data-i18n-key="privacyP3">本ポリシーは、法令の改正等により予告なく変更することがあります。</p>
             </article>
         </main>
     </div>
 
     <footer>
         <nav class="footer-nav">
-            <a href="./">ホーム</a> 
-            <a href="guide.html">利用ガイド</a>
-            <a href="about.html">サイト概要</a>
+            <a href="./" data-i18n-key="footerHome">ホーム</a> 
+            <a href="guide.html" data-i18n-key="footerGuide">利用ガイド</a>
+            <a href="about.html" data-i18n-key="footerAbout">サイト概要</a>
         </nav>
 
         <!-- 도구들 드롭다운 메뉴 -->
@@ -56,8 +56,8 @@
         <p>© 2025. azzaman All Rights Reserved.</p>
     </footer>
 
-
-
-    <script src="theme.js?v=1.2"></script>
+    <script src="translations.js?v=1.5"></script>
+    <script src="theme.js?v=1.5"></script>
+    <script src="subpage.js?v=1.5"></script>
 </body>
 </html>
