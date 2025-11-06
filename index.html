@@ -18,6 +18,8 @@
     <link rel="canonical" href="https://www.wareki.com/">
     <link rel="alternate" hreflang="ja" href="https://www.wareki.com/">
     <link rel="alternate" hreflang="en" href="https://www.wareki.com/">
+    <link rel="alternate" hreflang="ko" href="https://www.wareki.com/">
+    <link rel="alternate" hreflang="zh" href="https://www.wareki.com/">
     <link rel="alternate" hreflang="x-default" href="https://www.wareki.com/">
 
     <!-- SEO: Social Media Sharing (Open Graph) -->
@@ -41,6 +43,7 @@
         <button data-lang="ja" class="active">JA</button>
         <button data-lang="en">EN</button>
         <button data-lang="ko">KO</button>
+        <button data-lang="zh">ZH</button>
         <button id="theme-switcher" title="Toggle Mondrian Mode">🎨</button>
     </div>
 
@@ -89,12 +92,25 @@
 
     <footer>
         <nav class="footer-nav">
-            <a href="about.html" data-i18n-key="footerAbout">サイト概要</a> |
-            <a href="guide.html" data-i18n-key="footerGuide">利用ガイド</a> |
+            <a href="about.html" data-i18n-key="footerAbout">サイト概要</a> 
+            <a href="guide.html" data-i18n-key="footerGuide">利用ガイド</a>
             <a href="privacy.html" data-i18n-key="footerPrivacy">プライバシーポリシー</a>
         </nav>
+
+        <!-- 도구들 드롭다운 메뉴 -->
+        <div class="footer-dropdown">
+            <button class="dropdown-toggle" data-i18n-key="relatedLinksTitle">도구들</button>
+            <ul class="dropdown-menu">
+                <li><a href="https://tokyogoa.github.io/pdf-baker/" target="_blank">PDF Baker</a></li>
+            </ul>
+        </div>
+
         <p>© 2025. azzaman All Rights Reserved.</p>
     </footer>
+
+
+
+
 
     <script src="data.js?v=1.4"></script>
     <script src="translations.js?v=1.4"></script>

@@ -23,6 +23,7 @@ const translations = {
     footerAbout: "About",
     footerGuide: "User Guide",
     footerPrivacy: "Privacy Policy",
+    relatedLinksTitle: "Tools",
     // Age Calculator
     ageCalculatorTitle: "Age Calculator",
     birthDateLabel: "Date of Birth",
@@ -61,6 +62,7 @@ const translations = {
     footerAbout: "사이트 소개",
     footerGuide: "이용 안내",
     footerPrivacy: "개인정보처리방침",
+    relatedLinksTitle: "도구들",
     // Age Calculator
     ageCalculatorTitle: "만 나이 계산기",
     birthDateLabel: "생년월일",
@@ -97,6 +99,7 @@ const translations = {
     footerAbout: "サイト概要",
     footerGuide: "利用ガイド",
     footerPrivacy: "プライバシーポリシー",
+    relatedLinksTitle: "ツール",
     // Age Calculator
     ageCalculatorTitle: "年齢計算機",
     birthDateLabel: "生年月日",
@@ -111,5 +114,42 @@ const translations = {
     errorBirthDate: "生年月日を入力してください。",
     errorBirthDateInFuture: "生年月日は基準日より未来に設定できません。",
     infoCrossoverYear: "注意: {year}年には二つの元号が存在します。{prevEraName}は{prevEraEndDate}まで、{newEraName}は{newEraStartDate}から始まります。",
+  },
+  zh: {
+    // Page Title
+    pageTitle: "日本年号换算与快速参考表 | 令和, 平成, 昭和",
+    pageTitleMain: "日本年号换算器",
+    pageTitleSub: "日本年号/公历换算器",
+    // Labels
+    westernYearLabel: "公历 (例如: 2025)",
+    japaneseYearLabel: "日本年号",
+    // Placeholders
+    westernYearPlaceholder: "输入公历年份",
+    japaneseYearPlaceholder: "年",
+    // Buttons
+    clearButton: "清除",
+    // Error Messages
+    errorValidYear: "请输入有效的公历年份。",
+    errorMinYear: "年份必须是 {year} 年或之后。",
+    errorPositiveYear: "请输入有效的年数。",
+    errorEraNotFound: "找不到年号 '{eraName}'。",
+    errorEraEnded: "{eraName} 年号已于 {maxYear} 年结束。",
+    // Footer Links
+    footerAbout: "关于本站",
+    footerGuide: "使用指南",
+    footerPrivacy: "隐私政策",
+    relatedLinksTitle: "工具",
+    // Age Calculator
+    ageCalculatorTitle: "年龄计算器",
+    birthDateLabel: "出生日期",
+    birthYearPlaceholder: "年",
+    birthMonthPlaceholder: "月",
+    birthDayPlaceholder: "日",
+    referenceDateLabel: "基准日期",
+    ageResultText: "您的年龄是 {age} 周岁。",
+    ageResultTextWithEra: "{eraName} {eraYear}年 ({age} 周岁)",
+    errorInvalidDate: "请输入有效日期。",
+    errorBirthDateInFuture: "出生日期不能晚于基准日期。",
+    infoCrossoverYear: "请注意: {year}年包含两个年号。{prevEraName} 于 {prevEraEndDate} 结束，{newEraName} 于 {newEraStartDate} 开始。",
   }
 };
