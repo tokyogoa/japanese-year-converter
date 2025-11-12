@@ -179,72 +179,47 @@ body, .converter-container, input, select, button, .lang-switcher {
     height: 32px;
 }
 
-/* === Brand Logo Styles === */
-.brand-logo {
+
+
+h1 {
+    margin-bottom: 2rem;
+    font-size: 1.875rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    text-align: center;
+    color: var(--color-text-primary);
+}
+
+/* Minimal logo design */
+.logo-text {
     display: flex;
+    align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
-    position: relative;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
 .logo-icon {
-    width: 80px;
-    height: 80px;
-    animation: logoRotate 20s linear infinite;
-    filter: drop-shadow(0 4px 12px rgba(0, 112, 74, 0.2));
-    transition: transform 0.3s ease;
+    width: 32px;
+    height: 32px;
+    color: var(--color-accent);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
 }
 
-.logo-icon:hover {
-    transform: scale(1.05);
-    animation-play-state: paused;
+.logo-text:hover .logo-icon {
+    transform: rotate(90deg);
 }
 
-/* Smaller logo for subpages */
-.brand-logo-small {
-    margin-bottom: 1rem;
+/* Small logo for subpages */
+.logo-text-small {
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
-.brand-logo-small .logo-icon {
-    width: 60px;
-    height: 60px;
-    animation-duration: 30s;
-}
-
-@keyframes logoRotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* Brand identity decorative elements */
-.converter-container::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 6px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        var(--color-gold) 20%, 
-        var(--color-accent) 50%, 
-        var(--color-gold) 80%, 
-        transparent 100%
-    );
-    border-radius: 0 0 3px 3px;
-}
-
-h1 {
-    background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 2rem;
-    font-size: 1.875rem;
-    font-weight: 700; /* Bold for Starbucks feel */
-    letter-spacing: -0.025em;
-    text-align: center;
+.logo-text-small .logo-icon {
+    width: 24px;
+    height: 24px;
 }
 
 h1 span {
@@ -456,33 +431,7 @@ footer {
     position: relative;
 }
 
-/* Footer brand elements */
-.footer-brand {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1rem;
-}
 
-.footer-logo {
-    width: 40px;
-    height: 40px;
-    color: var(--color-accent);
-    opacity: 0.7;
-}
-
-.footer-logo svg {
-    width: 100%;
-    height: 100%;
-}
-
-.brand-text {
-    font-weight: 600;
-    color: var(--color-accent);
-    font-family: 'Roboto Mono', monospace;
-    letter-spacing: 1px;
-}
 
 .footer-nav {
     margin-bottom: 1rem;
