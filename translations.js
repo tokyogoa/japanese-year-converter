@@ -5,6 +5,8 @@ const translations = {
     pageTitle: "Japanese Era Converter & Chart (Reiwa, Heisei, Showa)",
     pageTitleMain: "Japanese Year Converter",
     pageTitleSub: "Wareki/Seireki Calculator",
+    // Site Description
+    siteDescription: "A convenient tool for instantly converting and calculating between Japanese eras (Reiwa, Heisei, Showa, Taisho, Meiji) and Western years. Also provides an era reference table useful for age calculation and resume creation. Simple and user-friendly interface.",
     // Labels
     westernYearLabel: "Western Year (e.g., 2025)",
     japaneseYearLabel: "Japanese Year",
@@ -62,6 +64,8 @@ const translations = {
     pageTitle: "일본 연호 변환 및 조견표 | 레이와, 헤이세이, 쇼와",
     pageTitleMain: "일본 연호 변환기",
     pageTitleSub: "일본연호/서력 변환기",
+    // Site Description
+    siteDescription: "레이와, 헤이세이, 쇼와, 다이쇼, 메이지의 일본 연호와 서력을 즉시 변환・계산할 수 있는 편리한 도구입니다. 나이 계산과 이력서 작성에 도움되는 연호 조견표도 제공. 간단하고 사용하기 쉬운 인터페이스.",
     // Labels
     westernYearLabel: "서기 (예: 2025)",
     japaneseYearLabel: "일본 연호",
@@ -117,6 +121,8 @@ const translations = {
     pageTitle: "和暦・西暦の早見表と変換 | 令和・平成・昭和対応",
     pageTitleMain: "和暦・西暦変換",
     pageTitleSub: "年号計算ツール",
+    // Site Description
+    siteDescription: "令和、平成、昭和、大正、明治の和暦と西暦を瞬時に変換・計算できる便利なツールです。年齢計算や履歴書作成にも役立つ年号早見表も提供。シンプルで使いやすいインターフェース。",
     // Labels
     westernYearLabel: "西暦 (例: 2025)",
     japaneseYearLabel: "和暦",
@@ -174,6 +180,8 @@ const translations = {
     pageTitle: "日本年号换算与快速参考表 | 令和, 平成, 昭和",
     pageTitleMain: "日本年号换算器",
     pageTitleSub: "日本年号/公历换算器",
+    // Site Description
+    siteDescription: "能够瞬时转换和计算令和、平成、昭和、大正、明治等日本年号与公历年份的便利工具。还提供有助于年龄计算和简历制作的年号对照表。界面简单易用。",
     // Labels
     westernYearLabel: "公历 (例如: 2025)",
     japaneseYearLabel: "日本年号",

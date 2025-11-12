@@ -51,6 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update page title
         document.title = getTranslation('pageTitle');
 
+        // Update meta description
+        const metaDescription = document.querySelector('meta[name="description"]');
+        if (metaDescription) {
+            metaDescription.setAttribute('content', getTranslation('siteDescription'));
+        }
+
         // Update active button
         langButtons.forEach(btn => {
             btn.classList.toggle('active', btn.dataset.lang === lang);
@@ -334,8 +340,10 @@ document.addEventListener('DOMContentLoaded', () => {
             referenceDateInput.value = `${yyyy}-${mm}-${dd}`;
         }
 
+        // Set initial language from localStorage or browser
+        const savedLang = localStorage.getItem('preferredLang');
         const browserLang = navigator.language.split('-')[0];
-        setLanguage(translations[browserLang] ? browserLang : 'ja');
+        setLanguage(savedLang || (translations[browserLang] ? browserLang : 'ja'));
 
         westernYearInput.addEventListener('input', handleWesternYearInput);
         japaneseEraSelect.addEventListener('change', handleJapaneseYearInput);
@@ -350,7 +358,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         langButtons.forEach(button => {
-            button.addEventListener('click', () => setLanguage(button.dataset.lang));
+            button.addEventListener('click', () => {
+                const selectedLang = button.dataset.lang;
+                setLanguage(selectedLang);
+                localStorage.setItem('preferredLang', selectedLang);
+            });
         });
         
         calculateAge();
