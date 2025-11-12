@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Calendar background -->
+  <rect x="4" y="6" width="24" height="20" rx="2" fill="none" stroke="#00704A" stroke-width="2"/>
+  
+  <!-- Calendar top bars (hooks) -->
+  <path d="M10 2v6M22 2v6" stroke="#00704A" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Calendar header line -->
+  <path d="M4 14h24" stroke="#00704A" stroke-width="2"/>
+  
+  <!-- Calendar date dots -->
+  <circle cx="12" cy="20" r="1.5" fill="#00704A"/>
+  <circle cx="20" cy="20" r="1.5" fill="#00704A"/>
+</svg>
